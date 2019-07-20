@@ -1,0 +1,2 @@
+gordon: moving, allowed spaces
+Zenchang: capturing, scoring, GUI, menu

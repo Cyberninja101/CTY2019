@@ -1,0 +1,760 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Checkers Royale</title>
+    <style type='text/css'>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 14pt;
+            box-sizing: border-box;
+        }
+
+        div#header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: aqua;
+            min-width: 100vw;
+            min-height: 8vh;
+        }
+
+        div#header>div {
+            display: flex;
+            font-size: 4em;
+        }
+
+        div#board {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 0.5em;
+            min-height: 60vh;
+        }
+
+        .grid {
+            display: grid;
+            background-color: black;
+            grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+            grid-gap: 0em;
+            min-height: 80vh;
+            min-width: 56vw;
+
+            padding: 1em;
+
+        }
+
+
+        .button1 {
+            font-family: 'Rubik Mono One', sans-serif;
+            background-color: lightblue;
+            padding: 0.1rem;
+            font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button2 {
+            font-family: 'Rubik Mono One', sans-serif;
+            background-color: black;
+            padding: 0.1rem;
+            font-size: 2em;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button1:hover {
+            background-color: rgb(89, 149, 199);
+        }
+
+        div#caption {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        div#resetButton {
+            display: flex;
+            margin-top: 0.2em;
+            font-size: 2.5em;
+            background-color: pink;
+            padding: 0.3em;
+            border-radius: 0.8em;
+            margin-right: 2em;
+        }
+
+        div#resetButton:hover {
+            background-color: rgb(228, 171, 190);
+        }
+
+        div#menuButton {
+            display: flex;
+            text-decoration: none;
+            color: black;
+            margin-top: 0.3em;
+            margin-left: 2em;
+            font-size: 20pt;
+
+            background-color: pink;
+            padding: 0.4em;
+            border-radius: 1.5em;
+        }
+
+        div#menuButton:hover {
+            background-color: rgb(228, 171, 190);
+        }
+
+        canvas#ballpen {
+            display: block;
+            width: 100vw;
+            height: 50%;
+
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div id='header'>
+        <div id='title'>
+            O's Turn
+        </div>
+    </div>
+
+    <div id='board'>
+        <div class='grid'>
+
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+
+
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+
+
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+
+
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+
+
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+
+
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+            <div class='button2'>&nbsp;</div>
+            <div class='button1'>&nbsp;</div>
+
+        </div>
+    </div>
+
+
+    <div id='caption'>
+        <div id='resetButton'>
+            Reset
+        </div>
+        <div id='menuButton'>
+            <a href='file:///C:/Users/CTYSession1/Desktop/CTY-Zenchang/FinalProject/menu.htm' style="text-decoration:none;font-size:45px;color:black;
+            padding: 0.1em" class='text' target='_blank'>Menu</a>
+        </div>
+    </div>
+
+    <canvas id='ballpen'></canvas>
+    <script type='text/javascript'>
+        // Variables
+        let hasWon = false
+        let boardLength = 9;
+        let board = [];
+        let players = 4;
+        let canvas = null;
+        let winner = null;
+        let alivePlayers = []
+
+
+
+
+
+
+        // Classes
+        class Player {
+            constructor(name, arrayPos, value, isDead) {
+                this.name = name
+                this.arrayPos = arrayPos;
+                this.value = value
+                this.isDead = isDead
+            }
+        }
+
+
+        class Banner {
+            constructor(x, y, width, height, velX) {
+                this.x = x;
+                this.y = y;
+                this.width = width;
+                this.height = height;
+                this.velX = velX;
+            }
+        }
+
+        let buttons = document.getElementsByClassName('button1');
+        let resetButton = document.getElementById('resetButton')
+        let title = document.getElementById("title")
+
+        let player1 = new Player('O', 0, 1, false)
+        let player2 = new Player('X', 4, 2, false)
+        let player3 = new Player('H', 40, 3, false)
+        let player4 = new Player('V', 36, 4, false)
+
+        let Banner1 = new Banner(0, 200, 250, 100, 12);
+        let Banner2 = new Banner(0, 200, 250, 100, -12);
+
+        let turn = 1
+
+
+
+        //init function works
+        function init() {
+            canvas = document.getElementById('ballpen')
+            canvas.width = canvas.clientWidth;
+            canvas.height = canvas.clientHeight;
+
+            canvas.style.display = 'none'
+
+            Banner2.x = canvas.width - 250;
+            for (let i = 0; i < buttons.length; i++) {
+                buttons[i].innerHTML = '&nbsp;';
+                buttons[i].id = i;
+                buttons[i].addEventListener('click', handleClick);
+                board.push(0);
+            }
+            resetButton.addEventListener('click', reset)
+
+
+            alivePlayers = [player1, player2, player3, player4]
+
+            movePlayer(player1, 0);
+            movePlayer(player2, 4);
+            movePlayer(player3, 36);
+            movePlayer(player4, 40);
+
+            updateBoard();
+
+            // requestAnimationFrame(nextFrame);
+        }
+
+        function nextFrame(time) {
+            console.log("reached next frame!")
+            let pen = canvas.getContext('2d');
+            pen.font = "80px Georgia";
+            pen.clearRect(0, 0, canvas.width, canvas.height)
+
+            pen.fillStyle = '#2bff72';
+            if (Banner1.x + Banner1.width < canvas.width / 2) {
+                Banner1.x += Banner1.velX;
+            }
+            if (Banner2.x > canvas.width / 2) {
+                Banner2.x += Banner2.velX;
+            }
+
+            pen.fillRect(Banner1.x, Banner1.y, Banner1.width, Banner1.height)
+            pen.fillRect(Banner2.x, Banner2.y, Banner2.width, Banner2.height)
+            pen.fillStyle = "black ";
+            pen.fillText('Wins', Banner2.x + 30, Banner2.y + Banner2.height - 20)
+            pen.fillText(winner, Banner1.x + 100, Banner2.y + Banner1.height - 20)
+            if (canvas.style.display === 'block') {
+                requestAnimationFrame(nextFrame);
+            }
+        }
+
+        //reset button works
+        function reset() {
+            turn = 1
+            winner = null;
+            Banner1.x = 0;
+            Banner1.y = 200;
+            Banner2.x = canvas.width - 250;
+            Banner1.y = 200;
+            canvas.style.display = 'none';
+            for (let i = 0; i < buttons.length; i++) {
+                board[i] = 0
+            }
+            title.innerHTML = "O's Turn"
+            player1.isDead = false
+            player2.isDead = false
+            player3.isDead = false
+            player4.isDead = false
+            movePlayer(player1, 0);
+            movePlayer(player2, 4);
+            movePlayer(player3, 36);
+            movePlayer(player4, 40);
+            updateBoard()
+        }
+
+        function checkIfjump(player, target, turn) {
+            let jumpedPlayer = ""
+
+            if (checkValidJump(player, target, player1)) {
+                jumpedPlayer = "player1"
+                // randomStuff(player, target.id)
+                board[target.id] = turn;
+                board[player1.arrayPos] = 0
+                movePlayer(player, target);
+                hasWon = true
+                turnHandling();
+                updateBoard()
+            }
+
+
+            if (checkValidJump(player, target, player2)) {
+                jumpedPlayer = "player2"
+                // randomStuff(player, target.id)            
+                board[target.id] = turn;
+                board[player2.arrayPos] = 0
+                movePlayer(player, target);
+                hasWon = true
+                turnHandling();
+                updateBoard()
+            }
+
+            if (checkValidJump(player, target, player3)) {
+                jumpedPlayer = "player3"
+                // randomStuff(player, target.id)
+                board[target.id] = turn;
+                board[player3.arrayPos] = 0
+                movePlayer(player, target);
+                hasWon = true
+                turnHandling();
+                updateBoard()
+            }
+
+            if (checkValidJump(player, target, player4)) {
+                jumpedPlayer = "player4"
+                // randomStuff(player, target.id)
+                board[target.id] = turn;
+                board[player4.arrayPos] = 0
+                movePlayer(player, target);
+                hasWon = true
+                turnHandling();
+                updateBoard()
+            }
+
+            return jumpedPlayer
+        }
+
+        //This works
+        function handleClick(event) {
+            let target = event.target;
+            if (board[target.id] == 0) {
+                for (let i = 0; i < board.length; i++) {
+                    if (board[i] == turn) {
+                        board[i] = 0;
+                    }
+                }
+                if (turn == 1) {
+                    if (checkValidPos(player1, target.id)) {
+                        board[target.id] = turn;
+                        movePlayer(player1, target.id);
+                        turnHandling();
+                        updateBoard()
+                    }
+                    console.log(checkIfjump(player1, target.id, turn))
+
+                } else if (turn == 2) {
+                    if (checkValidPos(player2, target.id)) {
+                        board[target.id] = turn;
+                        movePlayer(player2, target.id);
+                        turnHandling();
+                        updateBoard()
+                    }
+                    console.log(checkIfjump(player2, target.id, turn))
+
+                } else if (turn == 3) {
+                    if (checkValidPos(player3, target.id)) {
+                        board[target.id] = turn;
+                        movePlayer(player3, target.id);
+                        turnHandling();
+                        updateBoard()
+                    }
+                    console.log(checkIfjump(player3, target.id, turn))
+
+                } else if (turn == 4) {
+                    if (checkValidPos(player4, target.id)) {
+                        board[target.id] = turn;
+                        movePlayer(player4, target.id);
+                        turnHandling();
+                        updateBoard()
+                    }
+                    console.log(checkIfjump(player4, target.id, turn))
+
+                }
+            }
+        }
+
+
+        //killEnemy works
+        function killEnemy(enemy) {
+            //kills enemy - only works in checkValidJump()
+            enemy.isDead = true
+            board[enemy.arrayPos] = 0
+            enemy.arrayPos = -1
+            alivePlayers.splice(enemy.value, 1)
+            console.log(alivePlayers)
+            updateBoard()
+        }
+
+
+        function turnHandling() {
+            //switches turn
+            //turn 1 = O
+            //turn 2 = X
+            //turn 3 = H
+            //turn 4 = V
+            if (turn == 1) {
+                turn = 2
+                title.innerHTML = "X's Turn"
+                if (player2.isDead) {
+                    turn = 3
+                    title.innerHTML = "H's Turn"
+                    if (player3.isDead) {
+                        turn = 4
+                        title.innerHTML = "V's Turn"
+                        if (player4.isDead) {
+                            turn = 1
+                            title.innerHTML = "O Wins!"
+                            winner = 'O';
+                            canvas.style.display = 'block'
+                            requestAnimationFrame(nextFrame);
+                        }
+                    }
+                }
+            } else if (turn == 2) {
+                turn = 3
+                title.innerHTML = "H's Turn"
+                if (player3.isDead) {
+                    turn = 4
+                    title.innerHTML = "V's Turn"
+                    if (player4.isDead) {
+                        turn = 1
+                        title.innerHTML = "O's Turn"
+                        if (player1.isDead) {
+                            turn = 2
+                            title.innerHTML = "X Wins!"
+                            winner = 'X';
+                            canvas.style.display = 'block'
+
+                            requestAnimationFrame(nextFrame);
+                        }
+                    }
+                }
+
+            } else if (turn == 3) {
+                turn = 4
+                title.innerHTML = "V's Turn"
+                if (player4.isDead) {
+                    turn = 1
+                    title.innerHTML = "O's Turn"
+                    if (player1.isDead) {
+                        turn = 2
+                        title.innerHTML = "X's Turn"
+                        if (player2.isDead) {
+                            turn = 3
+                            title.innerHTML = "H Wins!"
+                            winner = 'H'
+                            canvas.style.display = 'block'
+
+                            requestAnimationFrame(nextFrame);
+                        }
+                    }
+                }
+            } else if (turn == 4) {
+                turn = 1
+                title.innerHTML = "O's Turn"
+                if (player1.isDead) {
+                    turn = 2
+                    title.innerHTML = "X's Turn"
+                    if (player2.isDead) {
+                        turn = 3
+                        title.innerHTML = "H's Turn"
+                        if (player3.isDead) {
+                            turn = 4
+                            title.innerHTML = "V Wins!"
+                            winner = 'V'
+                            canvas.style.display = 'block'
+
+                            requestAnimationFrame(nextFrame);
+                        }
+                    }
+                }
+            }
+
+        }
+
+        //this works
+        function doesInclude(arr, value) {
+            for (let i = 0; i < arr.length; i++) {
+                if (arr[i] == value) {
+                    return true
+                }
+            }
+            return false
+        }
+
+        function checkValidJump(player, destination, enemy) {
+            let goodSpaces = []
+
+            let topEdges = [1, 2, 3];
+            let bottomEdges = [37, 38, 39];
+            let leftEdges = [9, 18, 27];
+            let rightEdges = [13, 22, 31];
+
+            let topLeft = parseInt(player.arrayPos) - 10;
+            let topRight = parseInt(player.arrayPos) - 8;
+            let bottomLeft = parseInt(player.arrayPos) + 8;
+            let bottomRight = parseInt(player.arrayPos) + 10;
+
+
+            let oppTopLeft = parseInt(player.arrayPos) - 5;
+            let oppTopRight = parseInt(player.arrayPos) - 4;
+            let oppBottomLeft = parseInt(player.arrayPos) + 4;
+            let oppBottomRight = parseInt(player.arrayPos) + 5;
+
+
+
+            goodSpaces = [topLeft, topRight, bottomLeft, bottomRight]
+
+            enemySpaces = [oppBottomLeft, oppBottomRight, oppTopLeft, oppTopRight]
+            //Top Left
+            if (player.arrayPos == 0) {
+                goodSpaces = [bottomRight];
+                enemySpaces = [oppBottomRight]
+            }
+            // Top Right
+            else if (player.arrayPos == 4) {
+                goodSpaces = [bottomLeft];
+                enemySpaces = [oppbottomLeft]
+            }
+            //bottom left
+            else if (player.arrayPos == 36) {
+                goodSpaces = [topRight];
+                enemySpaces = [oppTopRight]
+            }
+            //botrom right
+            else if (player.arrayPos == 40) {
+                goodSpaces = [topLeft]
+                enemySpaces = [oppTopLeft]
+            }
+
+            // Top edge
+            else if (doesInclude(topEdges, player.arrayPos)) {
+                goodSpaces = [bottomRight, bottomLeft];
+                enemySpaces = [oppBottomLeft, oppBottomRight];
+            }
+            // Bottom Edge
+            else if (doesInclude(bottomEdges, player.arrayPos)) {
+                goodSpaces = [topRight, topLeft];
+                enemySpaces = [oppTopLeft, oppTopRight];
+            }
+            // Left Edge
+            else if (doesInclude(leftEdges, player.arrayPos)) {
+                goodSpaces = [topRight, bottomRight];
+                enemySpaces = [oppTopLeft, oppBottomLeft]
+            }
+            // Right Edge
+            else if (doesInclude(rightEdges, player.arrayPos)) {
+                goodSpaces = [topLeft, bottomLeft];
+                enemySpaces = [oppTopRight, oppBottomRight]
+            }
+
+
+            if (destination == topLeft && enemy.arrayPos == oppTopLeft && doesInclude(enemySpaces, oppBottomRight)) {
+                killEnemy(enemy)
+                return true
+            } else if (destination == topRight && enemy.arrayPos == oppTopRight && doesInclude(enemySpaces, oppBottomLeft)) {
+                killEnemy(enemy)
+                return true
+            } else if (destination == bottomLeft && enemy.arrayPos == oppBottomLeft && doesInclude(enemySpaces, oppTopRight)) {
+                killEnemy(enemy)
+                return true
+            } else if (destination == bottomRight && enemy.arrayPos == oppBottomRight && doesInclude(enemySpaces, oppTopLeft)) {
+                killEnemy(enemy)
+                return true
+            }
+            return false
+        }
+
+
+        //this works I think
+        function checkValidPos(player, destination) {
+            let goodSpaces = [];
+
+            let topEdges = [1, 2, 3];
+            let bottomEdges = [37, 38, 39];
+            let leftEdges = [9, 18, 27];
+            let rightEdges = [13, 22, 31];
+
+            let topLeft = parseInt(player.arrayPos) - 5;
+            let topRight = parseInt(player.arrayPos) - 4;
+            let bottomLeft = parseInt(player.arrayPos) + 4;
+            let bottomRight = parseInt(player.arrayPos) + 5;
+
+            //Top Left
+            if (player.arrayPos == 0) {
+                goodSpaces = [bottomRight];
+            }
+            // Top Right
+            else if (player.arrayPos == 4) {
+                goodSpaces = [bottomLeft];
+            }
+            //bottom left
+            else if (player.arrayPos == 36) {
+                goodSpaces = [topRight];
+            }
+            //botton right
+            else if (player.arrayPos == 40) {
+                goodSpaces = [topLeft]
+            }
+
+
+            // Top Edge
+            else if (doesInclude(topEdges, player.arrayPos)) {
+                goodSpaces = [bottomRight, bottomLeft];
+            }
+            // Bottom Edge
+            else if (doesInclude(bottomEdges, player.arrayPos)) {
+                goodSpaces = [topRight, topLeft];
+            }
+            // Left Edge
+            else if (doesInclude(leftEdges, player.arrayPos)) {
+                goodSpaces = [topRight, bottomRight];
+            }
+            // Right Edge
+            else if (doesInclude(rightEdges, player.arrayPos)) {
+                goodSpaces = [topLeft, bottomLeft];
+            }
+
+            // Other possibilities
+            else {
+                goodSpaces = [topLeft, topRight, bottomLeft, bottomRight];
+            }
+
+            for (let i = 0; i < goodSpaces.length; i++) {
+                if (destination == goodSpaces[i]) {
+                    return true
+                }
+            }
+            return false
+
+        }
+
+        //this works
+        function movePlayer(player, destination) {
+            if (!(player.isDead)) {
+                player.arrayPos = destination
+                board[player.arrayPos] = player.value;
+            }
+        }
+
+        //this works
+        function updateBoard() {
+            for (let i = 0; i < board.length; i++) {
+                if (board[i] == 0) {
+                    buttons[i].innerHTML = '&nbsp;';
+                } else if (board[i] == 1) {
+                    buttons[i].innerHTML = 'O';
+                } else if (board[i] == 2) {
+                    buttons[i].innerHTML = 'X';
+                } else if (board[i] == 3) {
+                    buttons[i].innerHTML = 'H'
+                } else if (board[i] == 4) {
+                    buttons[i].innerHTML = 'V'
+                }
+            }
+        }
+
+
+        window.onload = init;
+    </script>
+</body>
+
+</html>
